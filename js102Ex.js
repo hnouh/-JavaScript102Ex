@@ -46,15 +46,16 @@ class Pilot extends Employee{
 //0 to 1000000
 var rand=Math.floor(Math.random() * 1000001);
 var d=new Date();
-var m=d.getMilliseconds();
-var ms=d.getMinutes();
+var h=d.getHours();
+var m=d.getMinutes();
+var ms=d.getMilliseconds();
 
 class Reservation{
-    constructor(reservationDate=m+ms,reservationID=rand,employeeId,vehiclesId,){
-        this.reservationDate = reservationDate;
-        this.reservationID = reservationDate+reservationID;
+    constructor(employeeId,vehiclesId){
         this.employeeId = employeeId;
         this.vehiclesId = vehiclesId;
+        this.reservationDate =d;
+        this.reservationID = h+m+ms+rand+employeeId;
     }   
 }
 
@@ -89,18 +90,26 @@ driversArray.push(driver1.id);
 
 //////////////////  
 var reservationArray=[];
-
+var finalArray=[];
 function checkMatch(employeeId,vehiclesId){
-    var newReservation= new Reservation();
-
     if (pilotsArray.includes(employeeId)&&carsArray.includes(vehiclesId)||driversArray.includes(employeeId)&&planesArray.includes(vehiclesId)){
         console.log("This information doesn't match");
     }
     else{
+        var newReservation= new Reservation(employeeId,vehiclesId);
         reservationArray.push(newReservation);
         console.log("Reservation complete and this reservation id: "+newReservation.reservationID);
-    }
+        reservationArray= reservationArray.map(function(currentValue){
+            return currentValue;
+        })
+        console.log(reservationArray);
 }
+    
 
+}
+//not match
 checkMatch(1234123412,1);
+//pilot
 checkMatch(1234123412,12);
+//driver
+checkMatch(1234523415,1);
