@@ -91,6 +91,7 @@ driversArray.push(driver1.id);
 //////////////////  
 var reservationArray=[];
 var finalArray=[];
+
 function checkMatch(employeeId,vehiclesId){
     if (pilotsArray.includes(employeeId)&&carsArray.includes(vehiclesId)||driversArray.includes(employeeId)&&planesArray.includes(vehiclesId)){
         console.log("This information doesn't match");
@@ -99,10 +100,10 @@ function checkMatch(employeeId,vehiclesId){
         var newReservation= new Reservation(employeeId,vehiclesId);
         reservationArray.push(newReservation);
         console.log("Reservation complete and this reservation id: "+newReservation.reservationID);
-        reservationArray= reservationArray.map(function(currentValue){
+        finalArray= reservationArray.map(function(currentValue){
             return currentValue;
         })
-        console.log(reservationArray);
+        console.log(finalArray);
 }
     
 
